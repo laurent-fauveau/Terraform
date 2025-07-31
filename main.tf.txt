@@ -1,0 +1,16 @@
+﻿terraform {
+  required_providers {
+    null = {
+      source  = "hashicorp/null"
+      version = "~> 3.0"
+    }
+  }
+}
+
+provider "null" {}
+
+resource "null_resource" "clone_vm" {
+  provisioner "local-exec" {
+    command = "bash ./scripts/clone_vm.sh ${var.vm_path} ${var.vm_name}"
+  }
+}
