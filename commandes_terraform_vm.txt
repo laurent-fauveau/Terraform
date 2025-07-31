@@ -1,0 +1,39 @@
+# 1. Se placer dans le dossier de travail Terraform
+cd ~/terraform_debian_lab
+
+# 2. Initialiser le projet Terraform
+terraform init
+
+# (Optionnel en cas d'erreur de lock file ou de mise à jour)
+terraform init -upgrade
+
+# 3. Vérifier le plan d'exécution de Terraform
+terraform plan
+
+# 4. Appliquer le plan pour créer les ressources (VM)
+terraform apply
+
+# 5. Supprimer les VM et toutes les ressources définies
+terraform destroy
+
+# 6. (Optionnel) Lister les fichiers Terraform présents dans le projet
+ls
+
+# 7. (Optionnel) Vérifier les ressources et providers
+terraform providers
+
+# 8. (Optionnel) Voir les outputs définis après l’application
+terraform output
+
+# 9. (Optionnel) Nettoyer les fichiers d’état sauvegardés
+rm -f terraform.tfstate.*.backup
+
+# 10. (Optionnel) Supprimer complètement les fichiers d’état (si nécessaire)
+rm terraform.tfstate terraform.tfstate.backup
+
+# 11. (Si erreur persistante de provider) Supprimer `.terraform.lock.hcl` et relancer init
+rm .terraform.lock.hcl
+terraform init
+
+# 12. Pour créer une nouvelle machine à partir d’un .vmx local (via le provider vmware)
+# Assurez-vous d’avoir les variables configurées dans `terraform.tfvars` et les chemins corrects dans `main.tf`
